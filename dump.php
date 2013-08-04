@@ -1,3 +1,4 @@
+<?php
 /**
  * returns the $input as a highlighted var export string.
  *
