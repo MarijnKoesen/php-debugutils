@@ -1,19 +1,13 @@
 {
-    "repositories": [
+    "name": "marijnkoesen/php-debugutil",
+    "description": "Helpfull DebugUtility for the nasty debug sessions",
+    "authors": [
         {
-            "type":"package",
-            "package": {
-                "name": "marijnkoesen/DebugUtil.php"
-                "version": "master",
-                "source": {
-                    "url": "https://gist.github.com/efa99e7d28f982d77bb8.git",
-                    "type": "git",
-                    "reference":"master"
-                },
-                "autoload": {
-                    "classmap": ["."]
-                }
-            }
+            "name": "Marijn Koesen",
+            "email": "github@koesen.nl"
         }
-    ]
+    ],
+    "require": {
+
+    }
 }
