@@ -1,17 +1,19 @@
-"repositories": [
-    {
-        "type":"package",
-        "package": {
-            "name": "marijnkoesen/DebugUtil.php"
-            "version": "master",
-            "source": {
-                "url": "https://gist.github.com/efa99e7d28f982d77bb8.git",
-                "type": "git",
-                "reference":"master"
-            },
-            "autoload": {
-                "classmap": ["."]
+{
+    "repositories": [
+        {
+            "type":"package",
+            "package": {
+                "name": "marijnkoesen/DebugUtil.php"
+                "version": "master",
+                "source": {
+                    "url": "https://gist.github.com/efa99e7d28f982d77bb8.git",
+                    "type": "git",
+                    "reference":"master"
+                },
+                "autoload": {
+                    "classmap": ["."]
+                }
             }
         }
-    }
-]
+    ]
+}
