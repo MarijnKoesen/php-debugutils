@@ -33,23 +33,22 @@ class StateDebugger
     /**
      * Enable the StateDebugger in the request. 
      * 
-     * All requests will be logged to the writable dir
+     * All requests will be logged to the writable dir and if the __STATE_DEBUGGER__ get 
+     * parameter is set, this request log will be loaded and injected in the current
+     * request ($_POST, $_GET etc)
      *
-     * If you want to load a request add the __STATE_DEBUGGER__ get variable
+     * @param boolean $logCurrentRequest Switch whether to log the current request or not (and only list/load requests)
      */
     public function inject($logCurrentRequest=true)
     {
-        if ($logCurrentRequest) {
-            $this->logCurrentRequest();
-        }
+        $this->logCurrentRequest();
 
         if ( ! isset($_GET['__STATE_DEBUGGER__'])) {
             return;
         }
 
-        if (empty($_GET['__STATE_DEBUGGER__'])) {
-            $this->listReqests();
-            exit;
+        if (empty($_GET['__STATE_DEBUGGER__']))  {
+            return $this->listRequests();
         }
 
         $this->loadRequest($_GET['__STATE_DEBUGGER__']);
@@ -62,6 +61,9 @@ class StateDebugger
      */
     public function logCurrentRequest()
     {
+        if ( ! $logCurrentRequest) 
+            return false;
+
         // Write state file for request
         $dateWithMillisecs = date("Y-m-d_H-i-s", time()) . substr((string)microtime(), 1, 8);
         $stateFileName = tempnam($this->writableDirectory, $this->logPrefix . '-' . $dateWithMillisecs);
@@ -77,7 +79,6 @@ class StateDebugger
             ),
             JSON_PRETTY_PRINT
         );
-
 
         file_put_contents($stateFileName, $dump);
 
@@ -105,7 +106,7 @@ class StateDebugger
      * @param writableDirectory directory for saving the requests in files
      * @return void (call it solely for it's side-effects ;-))
      */
-    public function listReqests()
+    public function listRequests()
     {
         $fileNames = scandir($this->writableDirectory);
 
@@ -119,34 +120,6 @@ class StateDebugger
             echo "<td>" . date("Y-m-d H:i:s", filectime($path)) . "</td>"; 
             echo "</tr>";
         }
-
-        exit;
-        /*
-            if (!isset($_GET['set_state'])) {
-                // Show index/listing of states
-                $indexFileLines = array_reverse(explode("\n",
-                        file_get_contents($indexFile)));
-                foreach ($indexFileLines as $line)  {
-                    if (empty($line))
-                        continue;
-                    list($filename, $requestUri) = explode(" ", $line);
-                    printf("<a href=\"%s%s__STATE_DEBUGGER__&set_state=%s\">%s</a><br/>\n",
-                        $requestUri, (strpos($requestUri, "?") === FALSE ? "?" :
-                            "&"), $filename, $requestUri);
-                }
-                exit(0);
-            } else {
-                // Restore a specific state
-                list ($_SERVER, $_GET, $_POST, $_REQUEST, $_COOKIE, $_SESSION) =
-                    unserialize(file_get_contents($_GET['set_state'])); //DANGEROUS
-
-            }
-        }
-        */
-    }
-
-    protected  function getIndexFile()
-    {
-        return $this->writableDirectory . '/index.txt';
+        echo "</table>";
     }
 }
