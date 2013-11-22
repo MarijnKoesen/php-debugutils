@@ -1,5 +1,5 @@
 <?php
-namespace marijnkoesen\php-debugutils;
+namespace MarijnKoesen\PhpDebugUtils;
 
 class Dump
 {
