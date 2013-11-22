@@ -19,7 +19,7 @@ class StateDebugger
      * @param string $writableDirectory
      * @throws Exception
      */
-    public function StateDebugger($logPrefix, $writableDirectory = '/tmp')
+    public function __construct($logPrefix, $writableDirectory = '/tmp')
     {
         $this->logPrefix = $logPrefix;
 
@@ -41,7 +41,10 @@ class StateDebugger
      */
     public function inject($logCurrentRequest=true)
     {
-        $this->logCurrentRequest();
+        if ($logCurrentRequest && ! isset($_GET['__STATE_DEBUGGER__'])) {
+            $this->logCurrentRequest();
+            return;
+        }
 
         if ( ! isset($_GET['__STATE_DEBUGGER__'])) {
             return;
@@ -61,8 +64,6 @@ class StateDebugger
      */
     public function logCurrentRequest()
     {
-        if ( ! $logCurrentRequest) 
-            return false;
 
         // Write state file for request
         $dateWithMillisecs = date("Y-m-d_H-i-s", time()) . substr((string)microtime(), 1, 8);
