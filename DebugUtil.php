@@ -1,5 +1,5 @@
 <?php
-namespace MarijnKoesen\PhpDebugUtils;
+namespace MarijnKoesen\DebugUtils;
 
 /**
  * Debug helper functions to make those nasty problems on nasty places better debuggable
