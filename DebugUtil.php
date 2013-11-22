@@ -11,7 +11,7 @@ class DebugUtil
 {
     public static function registerFunctions()
     {
-        eval('function dump($input, $return=false) { return \marijnkoesen\php-debugutils\Debug::dump($input, $return); }');
+        eval('function dump($input, $return=false) { return \MarijnKoesen\DebugUtils\Dump::dump($input, $return); }');
     }
 }
 
