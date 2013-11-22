@@ -1,5 +1,5 @@
 <?php
-namespace \marijnkoesen\php-debugutils;
+namespace marijnkoesen\php-debugutils;
 
 /**
  * Debug helper function for logging and restoring requests.
