@@ -1,6 +1,6 @@
 {
-    "name": "marijnkoesen/php-debugutil",
-    "description": "Helpfull DebugUtility for the nasty debug sessions",
+    "name": "marijnkoesen/php-debugutils",
+    "description": "Helpfull DebugUtilities for the nasty debug sessions",
     "authors": [
         {
             "name": "Marijn Koesen",
