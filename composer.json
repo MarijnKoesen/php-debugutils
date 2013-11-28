@@ -8,9 +8,9 @@
         }
     ],
     "require": {
-
     },
     "autoload": {
-	    "classmap": ["."]
+      "files": [ "inc/globalfunctions.php"],
+	    "psr-0": { "MarijnKoesen\\DebugUtils": "src/" }
     }
 }
