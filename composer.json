@@ -8,6 +8,7 @@
         }
     ],
     "require": {
+        "oodle/krumo": "*"
     },
     "autoload": {
       "files": [ "inc/globalfunctions.php"],

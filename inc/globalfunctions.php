@@ -1,6 +1,13 @@
 <?php
 function dump($input, $return=false) { 
-    return \MarijnKoesen\DebugUtils\Dump::dump($input, $return); 
+    if ( ! $return) {
+       krumo($input);
+       return;
+    }
+
+    ob_start();
+    krumo($input); 
+    return ob_get_clean();
 }
 
 function printstacktrace($return=false) {
